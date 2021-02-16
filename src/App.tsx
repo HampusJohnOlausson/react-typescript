@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import './App.css';
+import Header from './components/Header';
 
-export default class App extends Component {
+
+export default class App extends Component<Props, State> {
+
   render() {
     return (
-      <div>
+      <>
+        <Header></Header>
         
-      </div>
+      </>
     );
   }
 }
