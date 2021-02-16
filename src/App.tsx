@@ -1,28 +1,17 @@
 import React, { Component } from 'react';
-import Header from './components/Header';
-import Sidebar from './components/sidebar';
 
-interface Props {}
-interface State {
-  isSidebarOpen: boolean;
-}
-
-export default class App extends Component<Props, State> {
-
-  state: State = {
-    isSidebarOpen: false
-  }
-
-  toggleSlider = () => {
-    this.setState({ isSidebarOpen: !this.state.isSidebarOpen})
-  }
+export default class App extends React.Component<{}, {}> {
 
   render() {
+
+    const [todos, setTodos] = useState([]);
+   
     return (
-      <>
-        <Header onMenuClick={this.toggleSlider}/>
-        <Sidebar isOpen={this.state.isSidebarOpen}/>
-      </>
+      <div>
+       <h1>Todo list</h1>
+       <input type="text" placeholder="add a todo..."/>
+       <button>Add</button>
+      </div>
     );
   }
 }
