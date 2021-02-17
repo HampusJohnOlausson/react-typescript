@@ -1,10 +1,14 @@
 import React, { CSSProperties } from 'react'
 
-export default function Header() {
+interface Props {
+    onMenuClick: () => void;
+}
+
+export default function Header(props: Props) {
     return (
         <div>
             <header style={headerStyle}>
-                <div style={burger}>H</div>
+                <div onClick={props.onMenuClick} style={burger}>H</div>
                 <div>Welcome</div>
             </header>
         </div>
