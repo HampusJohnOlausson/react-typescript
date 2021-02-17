@@ -1,20 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, CSSProperties } from 'react';
 
-export default class App extends React.Component<{}, {}> {
+
+
+export default class App extends React.Component {
 
   render() {
-
-    const [todos, setTodos] = useState([]);
    
     return (
-      <div>
-       <h1>Todo list</h1>
-       <input type="text" placeholder="add a todo..."/>
-       <button>Add</button>
+      <div style={rootStyle}>
+       <h1>kkaka</h1>
       </div>
     );
   }
+
 }
+
+const rootStyle: CSSProperties = {
+  
+};
 
 
 
