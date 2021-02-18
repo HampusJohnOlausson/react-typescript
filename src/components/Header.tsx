@@ -1,30 +1,81 @@
-import React, { CSSProperties } from 'react'
+import React, { Component } from 'react'
+import User from '../interfaces/User.interface'
 
-interface Props {
-    onMenuClick: () => void;
+
+interface SearchState {
+    error: boolean;
+    pokemon: Pokemon
+}
+interface Pokemon{
+    name: string, 
+    numberOfAbilities: number,
+    baseExperience: number, 
+    imageUrl: string 
 }
 
-export default function Header(props: Props) {
-    return (
-        <div>
-            <header style={headerStyle}>
-                <div onClick={props.onMenuClick} style={burger}>H</div>
-                <div>Welcome</div>
-            </header>
-        </div>
-    )
+export default class Header extends Component<User, SearchState>{
+    pokemonRef: React.RefObject<HTMLInputElement>;
+    constructor(props: User){
+        super(props);
+        this.state = {
+            error: false, 
+            pokemon: null
+        }
+        this.pokemonRef = React.createRef();
+    }
+    onSearchClick = () => {
+        const inputValue = this.pokemonRef.current.value;
+        fetch(`https://pokeapi.co/aoi/v2/pokemon/${inputValue}`)
+        .then(res => {
+            if(res.status !== 200){
+                this.setState({error: true})
+                return;
+            }
+            res.json().then(data => {
+                this.setState({
+                    error: false, 
+                    pokemon: {
+                        name: data.name,
+                        numberOfAbilities: data.abilities.length,
+                        baseExperience: data.base_experience,
+                        imageUrl: data.sprites.front_default
+                    }
+
+                }) 
+
+            })
+        })
+    }
+
+    render() {
+        const {name: userName, numberOfPokemons} = this.props;
+        const {  error, pokemon} = this.state;
+
+        let resultMarkup; 
+
+        if(error){
+            resultMarkup = <p>Pokemon not found. please try again</p>
+        } else if(this.state.pokemon) {
+            resultMarkup = <div>
+                <img src={pokemon.imageUrl} alt="pokemon" className="pokemonImage"/>
+                <p>{name} has {pokemon.numberOfAbilities} abilities and {pokemon.baseExperience} points</p>
+            </div>
+        }
+
+        return (
+            
+            <div>
+                <p>User{userName} {'  '}
+                {numberOfPokemons && <span>has {numberOfPokemons} Pokemons</span>} </p>
+                <input type="text" ref={this.pokemonRef}/>
+                <button onClick={this.onSearchClick} className="button">
+                    Search
+                </button>
+                {resultMarkup}
+            </div>
+        )
+    }
 }
 
-const headerStyle: CSSProperties = {
 
-    backgroundColor: 'lightblue',
-    height: '10rem',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: '2rem',
-    fontSize: '2rem'
-}
-const burger: CSSProperties = {
-    cursor: 'pointer',
-}
+
