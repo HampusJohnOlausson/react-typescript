@@ -1,21 +1,38 @@
 import React, { Component, CSSProperties } from 'react';
-import Header from './components/Header'
-import Sidebar from './components/Sidebar'
+import Input from './components/Input'
 
-export default class App extends React.Component{
-  
+interface Props{}
+interface State{
+  searchValue: string;
+
+}
+
+export default class App extends React.Component<Props, State>{
+
+  state: State = {
+    searchValue: ''
+  }
+
+  handleNewSearchValue = (value: string) => {
+    this.setState({ searchValue: value})
+  }
 
   render() {
     
     return (
       <React.Fragment>
- 
-      <Header name="John Doe" numberOfPokemons={12} />
+        <Input
+        value={this.state.searchValue} 
+        onChange={this.handleNewSearchValue}
+        />
       </React.Fragment>
     );
   }
 
 }
+
+
+
 
 
 
