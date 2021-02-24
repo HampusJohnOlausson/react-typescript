@@ -1,4 +1,5 @@
-import React, { Component, CSSProperties } from 'react';
+import React from 'react';
+import Layout from './components/Layout';
 
 export default class App extends React.Component{
 
@@ -9,7 +10,7 @@ export default class App extends React.Component{
     
     return (
       <React.Fragment>
-       
+       <Layout/>
       </React.Fragment>
     );
   }
