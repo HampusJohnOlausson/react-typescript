@@ -1,9 +1,11 @@
-import React, { CSSProperties } from 'react'
+import '../styles/App.css'
 import Main from './Main'
+import Navbar from './Navbar'
 
 const Layout = () => {
     return (
-        <div style={rootStyle}>
+        <div className="layout">
+            <Navbar/>
             <Main/>
         </div>
     )
@@ -12,7 +14,4 @@ const Layout = () => {
 export default Layout
 
 
-const rootStyle: CSSProperties = {
-    overflow: 'hidden',
-    width: '100%',
-}
+

@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
-import ItemList from './ItemList'
+import React from 'react'
 
-export default class Main extends Component {
-    render() {
-        return (
-            <div>
-               <ItemList/> 
-            </div>
-        )
-    }
+const Main = () => {
+    return (
+        <div>
+            
+        </div>
+    )
 }
 
+export default Main
