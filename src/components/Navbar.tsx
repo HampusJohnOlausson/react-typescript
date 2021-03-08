@@ -1,20 +1,40 @@
 import React, { CSSProperties } from 'react'
+import Sidebar from './Sidebar'
 
-const Navbar = () => {
-    return (
-        <div>
-            <header style={headerStyle}>
-                <h2>My page</h2>
-                <ul style={listStyle}>
-                    <li>About</li>
-                    <li>Contact</li>
-                </ul>
-            </header>
-        </div>
-    )
+interface State{
+    isSidebarOpen: boolean;
+}
+interface Props{
 }
 
-export default Navbar;
+export default class Navbar extends React.Component<Props, State> {
+
+    state: State = {
+        isSidebarOpen: false
+    }
+
+    toggleSidebar = (props: Props) => {
+        this.setState({ isSidebarOpen: !this.state.isSidebarOpen })
+    }
+
+    render() {
+        return (
+          <div>
+            <header style={headerStyle}>
+              <h2>My page</h2>
+              <h2 onClick={this.toggleSidebar} style={hamburgerStyle}>
+                <i className="fas fa-bars"></i>
+              </h2>
+            </header>
+            <Sidebar isOpen={this.state.isSidebarOpen}
+             onSidebarClose={this.toggleSidebar}
+             />
+          </div>
+        );
+    }
+}
+
+
 
 const headerStyle: CSSProperties = {
 
@@ -28,9 +48,11 @@ const headerStyle: CSSProperties = {
     color: 'white',
     padding: '1rem',
 }
-const listStyle: CSSProperties = {
-    listStyle: 'none',
-    width: '30%',
-    display: 'flex',
-    justifyContent: 'space-between',
+
+const hamburgerStyle: CSSProperties = {
+    cursor: 'pointer',
+    fontSize: '3rem',
+    margin: '2rem',
+    position: 'relative',
+    zIndex: 99,
 }
