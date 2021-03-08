@@ -1,38 +1,29 @@
-import React, { CSSProperties } from 'react'
-import Sidebar from './Sidebar'
+import React, { useState, CSSProperties } from 'react'
+import Sidebar from './Sidebar';
 
-interface State{
-    isSidebarOpen: boolean;
+const Navbar = () => {
+
+
+    const [showMenu, setShowMenu] = useState(false);
+
+    const showMenu = () => setShowMenu(!showMenu)
+
+    return (
+      <div>
+        <div>
+          <header style={headerStyle}>
+            <h2>My page</h2>
+            <h2 style={hamburgerStyle} onClick={showMenu}>
+              <i className="fas fa-bars"></i>
+            </h2>
+          </header>
+        </div>
+      </div>
+    );
 }
-interface Props{
-}
 
-export default class Navbar extends React.Component<Props, State> {
+export default Navbar
 
-    state: State = {
-        isSidebarOpen: false
-    }
-
-    toggleSidebar = (props: Props) => {
-        this.setState({ isSidebarOpen: !this.state.isSidebarOpen })
-    }
-
-    render() {
-        return (
-          <div>
-            <header style={headerStyle}>
-              <h2>My page</h2>
-              <h2 onClick={this.toggleSidebar} style={hamburgerStyle}>
-                <i className="fas fa-bars"></i>
-              </h2>
-            </header>
-            <Sidebar isOpen={this.state.isSidebarOpen}
-             onSidebarClose={this.toggleSidebar}
-             />
-          </div>
-        );
-    }
-}
 
 
 

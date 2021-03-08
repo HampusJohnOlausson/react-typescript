@@ -1,29 +1,19 @@
 import React, { CSSProperties } from 'react'
 
-interface Props{
-    isOpen: boolean;
-    onSidebarClose: () => void;
-}
-
-function Sidebar(props: Props) {
-  return (
-    <div>
-      <div
-        style={{
-          ...sidebarStyle,
-          right: props.isOpen ? 0 : "-100%",
-        }}
-        onClick={props.onSidebarClose}
-      >
+const Sidebar = () => {
+    return (
+      <div style={sidebarStyle}>
         <ul style={listStyle}>
           <li style={{ cursor: "pointer" }}>Home</li>
           <li style={{ cursor: "pointer" }}>About</li>
           <li style={{ cursor: "pointer" }}>Contact</li>
         </ul>
       </div>
-    </div>
-  );
+    );
 }
+
+
+
 
 export default Sidebar
 
