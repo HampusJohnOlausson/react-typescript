@@ -2,27 +2,24 @@ import React, { useState } from 'react'
 
 const Main = () => {
 
-    const [items, setItems] = useState([]);
-    
-    const addItem = () => {
-        setItems([...items, {
-            id: items.length,
-            value: Math.floor(Math.random() * 10 ) + 1
-        } ])
-    }
+    const [name, setName] = useState({firstName: '', lastName: ''})
 
     return (
         <div>
-            <div>
-                <button onClick={addItem}>add a number</button>
-            </div>
-            <ul>
-                {
-                    items.map(item => (
-                        <li key={item.id}>{item.value}</li>
-                    ))
-                }
-            </ul>
+            <form action="">
+                <input 
+                type="text"
+                 value={name.firstName}
+                  onChange={e => setName({ ...name, firstName: e.target.value })}
+                    />
+                <input 
+                type="text" 
+                value={name.lastName} 
+                onChange={e => setName({ ...name, lastName: e.target.value })}
+                    />
+                <h2>Your firts name is - {name.firstName}</h2>
+                <h2>Your last name is - {name.lastName}</h2>
+            </form>
         </div>
     )
 }
