@@ -2,24 +2,29 @@ import React, { useState } from 'react'
 
 const Main = () => {
 
-    const [name, setName] = useState({firstName: '', lastName: ''})
+
+    const initalCount = 0;
+    const [count, setCount] = useState(initalCount);
+
+const increment = () => {
+    setCount(count + 1)
+}
+
+const reset = () => {
+
+    setCount(initalCount)
+}
+
+const decrease = () => {
+    setCount(count - 1)
+}
 
     return (
         <div>
-            <form action="">
-                <input 
-                type="text"
-                 value={name.firstName}
-                  onChange={e => setName({ ...name, firstName: e.target.value })}
-                    />
-                <input 
-                type="text" 
-                value={name.lastName} 
-                onChange={e => setName({ ...name, lastName: e.target.value })}
-                    />
-                <h2>Your firts name is - {name.firstName}</h2>
-                <h2>Your last name is - {name.lastName}</h2>
-            </form>
+            <h2>{count}</h2>
+            <button onClick={reset}>reset</button>
+           <button onClick={increment}>increse</button>
+           <button onClick={decrease}>decrese</button>
         </div>
     )
 }
