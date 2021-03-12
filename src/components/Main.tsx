@@ -1,32 +1,29 @@
-import React, { useState } from 'react'
+import { Button, Checkbox} from '@material-ui/core'
+import { CSSProperties } from '@material-ui/styles'
+import React from 'react'
+import AccessAlarmIcon from "@material-ui/icons/AccessAlarm";
 
 const Main = () => {
 
+    
 
-    const initalCount = 0;
-    const [count, setCount] = useState(initalCount);
-
-const increment = () => {
-    setCount(count + 1)
-}
-
-const reset = () => {
-
-    setCount(initalCount)
-}
-
-const decrease = () => {
-    setCount(count - 1)
-}
+  
 
     return (
         <div>
-            <h2>{count}</h2>
-            <button onClick={reset}>reset</button>
-           <button onClick={increment}>increse</button>
-           <button onClick={decrease}>decrese</button>
+            <Checkbox></Checkbox>
+           <Button
+           startIcon={<AccessAlarmIcon />}
+            style={btn} color="primary" variant="contained" size="large">Bgehee</Button>
         </div>
     )
 }
 
 export default Main
+
+
+const btn: CSSProperties = {
+    color: 'white',
+    width: '15rem',
+    height: '3rem',
+}
